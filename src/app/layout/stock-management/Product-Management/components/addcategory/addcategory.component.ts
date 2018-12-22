@@ -3,6 +3,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Category } from 'src/app/_models';
 import { CategoryService } from '../../_services/category.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-addcategory',
@@ -21,6 +22,7 @@ export class AddCategoryComponent implements OnInit {
     }
 
     constructor(
+        private http: HttpClient,
         private categoryService: CategoryService,
         private formBuilder: FormBuilder,
         private modalService: NgbModal
@@ -41,8 +43,10 @@ export class AddCategoryComponent implements OnInit {
             console.log('Form Invalid');
             return;
         }
-        this.categoryService.add(this.f.categoryName.value);
-
+        console.log('categoryname is:');
+        console.log(this.f.categoryName.value);
+        console.log('categoryname is:');
+        this.http.post(`http://localhost:5000/api/Category`, this.f.categoryName.value);
     }
 
     private getDismissReason(reason: any): string {
