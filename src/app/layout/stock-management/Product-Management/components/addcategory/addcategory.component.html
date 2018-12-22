@@ -1,0 +1,26 @@
+<!-- <a class="nav-link" (click)="open(content)">Add Category</a> -->
+<button class="btn btn-primary" (click)="open(content)">Add Category</button>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Add Category</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]='categoryForm'>
+            <div class="form-group">
+                <input formControlName='categoryName' class="form-control" placeholder="Category Name">
+            </div>
+            <div class="form-group">
+                <button type="button" (click)='addCategory()' class="float-right btn btn-secondary">Add</button>
+            </div>
+        </form>
+
+        <br>
+
+    </div>
+    <!--<div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>-->
+</ng-template>

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { routerTransition } from '../router.animations';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { first } from 'rxjs/operators';
+
+import { AlertService, AuthenticationService } from '../_services';
 
 @Component({
     selector: 'app-login',
@@ -10,19 +13,51 @@ import { routerTransition } from '../router.animations';
     animations: [routerTransition()]
 })
 export class LoginComponent implements OnInit {
-    constructor(
-        private translate: TranslateService,
-        public router: Router
-        ) {
-            this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
-            this.translate.setDefaultLang('en');
-            const browserLang = this.translate.getBrowserLang();
-            this.translate.use(browserLang.match(/en|fr|ur|es|it|fa|de|zh-CHS/) ? browserLang : 'en');
+    loginForm: FormGroup;
+    loading = false;
+    submitted = false;
+    returnUrl: string;
+
+    constructor(private formBuilder: FormBuilder,
+        private route: ActivatedRoute,
+        private router: Router,
+        private authenticationService: AuthenticationService,
+        private alertService: AlertService) {}
+
+    ngOnInit() {
+        this.loginForm = this.formBuilder.group({
+            username: ['', Validators.required],
+            password: ['', Validators.required]
+        });
+
+        // reset login status
+        this.authenticationService.logout();
+
+        // get return url from route parameters or default to '/'
+        this.returnUrl =  this.route.snapshot.queryParams[''] || '/';
     }
 
-    ngOnInit() {}
+    // convenience getter for easy access to form fields
+    get f() { return this.loginForm.controls; }
 
-    onLoggedin() {
-        localStorage.setItem('isLoggedin', 'true');
+    onSubmit() {
+        this.submitted = true;
+
+        // stop here if form is invalid
+        if (this.loginForm.invalid) {
+            return;
+        }
+
+        this.loading = true;
+        this.authenticationService.login(this.f.username.value, this.f.password.value)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    this.router.navigate(['']);
+                },
+                error => {
+                    this.alertService.error(error);
+                    this.loading = false;
+                });
     }
 }

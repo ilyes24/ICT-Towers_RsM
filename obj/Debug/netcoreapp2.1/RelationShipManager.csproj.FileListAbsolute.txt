@@ -1,0 +1,14 @@
+F:\ICT-Towers\RelationShipManager\RelationShipManager\bin\Debug\netcoreapp2.1\RelationShipManager.deps.json
+F:\ICT-Towers\RelationShipManager\RelationShipManager\bin\Debug\netcoreapp2.1\RelationShipManager.runtimeconfig.json
+F:\ICT-Towers\RelationShipManager\RelationShipManager\bin\Debug\netcoreapp2.1\RelationShipManager.runtimeconfig.dev.json
+F:\ICT-Towers\RelationShipManager\RelationShipManager\bin\Debug\netcoreapp2.1\RelationShipManager.dll
+F:\ICT-Towers\RelationShipManager\RelationShipManager\obj\Debug\netcoreapp2.1\RelationShipManager.csprojAssemblyReference.cache
+F:\ICT-Towers\RelationShipManager\RelationShipManager\obj\Debug\netcoreapp2.1\RelationShipManager.csproj.CoreCompileInputs.cache
+F:\ICT-Towers\RelationShipManager\RelationShipManager\obj\Debug\netcoreapp2.1\RelationShipManager.RazorAssemblyInfo.cache
+F:\ICT-Towers\RelationShipManager\RelationShipManager\obj\Debug\netcoreapp2.1\RelationShipManager.RazorAssemblyInfo.cs
+F:\ICT-Towers\RelationShipManager\RelationShipManager\obj\Debug\netcoreapp2.1\RelationShipManager.AssemblyInfoInputs.cache
+F:\ICT-Towers\RelationShipManager\RelationShipManager\obj\Debug\netcoreapp2.1\RelationShipManager.AssemblyInfo.cs
+F:\ICT-Towers\RelationShipManager\RelationShipManager\obj\Debug\netcoreapp2.1\RelationShipManager.RazorTargetAssemblyInfo.cache
+F:\ICT-Towers\RelationShipManager\RelationShipManager\bin\Debug\netcoreapp2.1\RelationShipManager.pdb
+F:\ICT-Towers\RelationShipManager\RelationShipManager\obj\Debug\netcoreapp2.1\RelationShipManager.dll
+F:\ICT-Towers\RelationShipManager\RelationShipManager\obj\Debug\netcoreapp2.1\RelationShipManager.pdb
