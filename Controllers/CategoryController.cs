@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -35,9 +36,14 @@ namespace RelationShipManager.Controllers
         [HttpGet("")]
         public async Task<IActionResult> FindAll()
         {
+            ProductService productService = new ProductService();
             try
             {
                 var Categorys = db.Category.ToList();
+              foreach (var category in Categorys)
+              {
+                category.Product = (ICollection<Product>)productService.GetAll(category);
+              }
                 return Ok(Categorys);
             }
             catch

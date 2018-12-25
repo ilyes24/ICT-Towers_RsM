@@ -3,23 +3,58 @@
     <app-page-header [heading]="'Product Management'" [icon]="'fa-book'"></app-page-header>
 
     <!-- Page NavBar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <app-addcategory></app-addcategory>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Add Product</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
+    <div class="card">
+        <div class="card-header">
+            <app-addcategory></app-addcategory>
+            <form class="form-inline my-2 my-lg-0" style="float: right">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search For Category" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
-    </nav>
+    </div>
+    <br>
+
+    <!--Categorys-->
+    <div *ngIf="categorysObservable | async as categorys">
+        <div *ngFor="let category of categorys">
+            <div class="card">
+                <div class="card-header">
+                    {{ category.category1 }}
+                    <button class="btn btn-outline-success" style="float: right">add</button>
+                </div>
+                <div *ngIf="category.product.length else noProduct">
+                    <table class="card-body table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Reference</th>
+                                <th>Serial Number</th>
+                                <th>Price</th>
+                                <th>quantity</th>
+                                <th style="width: 165px"></th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let prod of category.product">
+                            <tr>
+                                <td>{{ prod.product1 }}</td>
+                                <td>{{ prod.reference }}</td>
+                                <td>{{ prod.serialNumber }}</td>
+                                <td>{{ prod.price }}</td>
+                                <td>{{ prod.quantite }}</td>
+                                <td>
+                                    <button class='btn btn-outline-danger'>delete</button> &nbsp;
+                                    <button class='btn btn-outline-warning'>edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <ng-template #noProduct class="align-content-center">
+                    <br>
+                    <p class='text-center'>No Poducts yet</p>
+                </ng-template>
+            </div>
+            <br>
+        </div>
+    </div>
 </div>

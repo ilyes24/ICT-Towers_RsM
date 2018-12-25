@@ -1,18 +1,4 @@
 {
-  "name": "SB-Admin-BS4-Angular-7",
-  "version": "7.0.0",
-  "license": "Apache",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
-    "gitbuild": "ng build --prod --base-href /start-angular/SB-Admin-BS4-Angular-7/master/dist/",
-    "test": "ng test",
-    "test-ci": "TEST_CI=true ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
-  },
-  "private": true,
   "dependencies": {
     "@angular/animations": "7.0.2",
     "@angular/common": "7.0.2",
@@ -55,5 +41,19 @@
     "ts-node": "7.0.1",
     "tslint": "5.11.0",
     "typescript": "3.1.1"
-  }
+  },
+  "license": "Apache",
+  "name": "SB-Admin-BS4-Angular-7",
+  "private": true,
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build --prod",
+    "gitbuild": "ng build --prod --base-href /start-angular/SB-Admin-BS4-Angular-7/master/dist/",
+    "test": "ng test",
+    "test-ci": "TEST_CI=true ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
+  "version": "7.0.0"
 }

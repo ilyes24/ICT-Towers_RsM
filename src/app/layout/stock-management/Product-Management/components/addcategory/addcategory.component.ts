@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Category } from 'src/app/_models';
 import { CategoryService } from '../../_services/category.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -46,7 +45,15 @@ export class AddCategoryComponent implements OnInit {
         console.log('categoryname is:');
         console.log(this.f.categoryName.value);
         console.log('categoryname is:');
-        this.http.post(`http://localhost:5000/api/Category`, this.f.categoryName.value);
+        this.categoryService.add(this.f.categoryName.value)
+            .subscribe(
+                data => {
+                    console.log('POST method is ended successfuly', data);
+                },
+                error => {
+                    console.log('Error: ', error);
+                }
+            );
     }
 
     private getDismissReason(reason: any): string {
