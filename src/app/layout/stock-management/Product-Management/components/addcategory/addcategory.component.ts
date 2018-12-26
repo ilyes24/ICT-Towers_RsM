@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CategoryService } from '../../_services/category.service';
-import { HttpClient } from '@angular/common/http';
+import { Category } from 'src/app/_models';
 
 @Component({
     selector: 'app-addcategory',
     templateUrl: './addcategory.component.html',
     styleUrls: ['./addcategory.component.scss'],
-    providers: [CategoryService]
 })
 export class AddCategoryComponent implements OnInit {
+    @Output() categoryAdded: EventEmitter<Category> = new EventEmitter();
+
     categoryForm: FormGroup;
     closeResult: string;
 
@@ -21,8 +21,6 @@ export class AddCategoryComponent implements OnInit {
     }
 
     constructor(
-        private http: HttpClient,
-        private categoryService: CategoryService,
         private formBuilder: FormBuilder,
         private modalService: NgbModal
         ) { }
@@ -42,18 +40,8 @@ export class AddCategoryComponent implements OnInit {
             console.log('Form Invalid');
             return;
         }
-        console.log('categoryname is:');
-        console.log(this.f.categoryName.value);
-        console.log('categoryname is:');
-        this.categoryService.add(this.f.categoryName.value)
-            .subscribe(
-                data => {
-                    console.log('POST method is ended successfuly', data);
-                },
-                error => {
-                    console.log('Error: ', error);
-                }
-            );
+        this.categoryAdded.emit(this.f.categoryName.value);
+        this.modalService.dismissAll(ModalDismissReasons.ESC);
     }
 
     private getDismissReason(reason: any): string {

@@ -67,6 +67,8 @@ namespace RelationShipManager.Services
             _context.Category.Remove(c);
             _context.SaveChanges();
         }
+        else
+            throw new AppException("Category Not Found:  " + id);
     }
   }
 }

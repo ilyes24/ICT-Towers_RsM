@@ -4,10 +4,11 @@ import { Category } from '../../../../_models';
 
 @Injectable()
 export class CategoryService {
-    constructor(private http: HttpClient) { }
+
+    constructor(private http: HttpClient) {}
 
     getAll() {
-        return this.http.get<Category[]>(`http://localhost:5000/api/Category`);
+        return this.http.get<Category>(`http://localhost:5000/api/Category`);
     }
 
     getById(id: number) {
@@ -15,15 +16,14 @@ export class CategoryService {
     }
 
     add(category: string) {
-        console.log(this.http.post<any>(`http://localhost:5000/api/Category`, { Category: category }));
-        return this.http.post<any>(`http://localhost:5000/api/Category`, { Category: category });
+        return this.http.post<Category>('http://localhost:5000/api/Category', {Category: category});
     }
 
     update(category: Category) {
-        return this.http.put(`http://localhost:5000/api/Category/` + category.IdCategory, category);
+        return this.http.put(`http://localhost:5000/api/Category/` + category.idCategory, category);
     }
 
     delete(id: number) {
-        return this.http.delete(`http://localhost:5000/api/Category/` + id);
+        return this.http.delete<any>(`http://localhost:5000/api/Category?id=` + id);
     }
 }

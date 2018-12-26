@@ -68,7 +68,6 @@ namespace RelationShipManager.Controllers
 
         }
 
-      [AllowAnonymous]
       [Produces("application/json")]
       [HttpPost("")]
       public IActionResult Add([FromBody] CategoryDto categoryDtro)
@@ -83,6 +82,13 @@ namespace RelationShipManager.Controllers
           {
               return BadRequest(new {message = ex.Message});
           }
+      }
+
+      [Produces("application/json")]
+      [HttpDelete]
+      public  Task<IActionResult> Delete(int id){
+          _categoryService.Delete(id);
+          return this.FindAll();
       }
     }
 }

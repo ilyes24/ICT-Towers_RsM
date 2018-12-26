@@ -5,7 +5,7 @@
     <!-- Page NavBar -->
     <div class="card">
         <div class="card-header">
-            <app-addcategory></app-addcategory>
+            <app-addcategory (categoryAdded)="categoryAdded($event)"></app-addcategory>
             <form class="form-inline my-2 my-lg-0" style="float: right">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search For Category" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -15,14 +15,24 @@
     <br>
 
     <!--Categorys-->
-    <div *ngIf="categorysObservable | async as categorys">
-        <div *ngFor="let category of categorys">
+    <div *ngIf="categories">
+        <div *ngFor="let category of categories">
             <div class="card">
                 <div class="card-header">
-                    {{ category.category1 }}
-                    <button class="btn btn-outline-success" style="float: right">add</button>
+                    <div *ngIf="category.product.length==0 else deletedisbled">
+                        <p style="display: inline" name='idCategory'> {{ category.category1 }} </p>
+                        <button class='btn btn-danger' style="float: right;" (click)="deleteCategory(category)">delete</button>
+                        <button class='btn btn-warning' style="float: right; margin-right: 10px;">edit</button>
+                        <button class="btn btn-success" style="float: right; margin-right: 10px;">add Product</button>
+                    </div>
+                    <ng-template #deletedisbled>
+                        <p style="display: inline" name='idCategory'> {{ category.category1 }} </p>
+                        <button class='btn btn-danger disabled' style="float: right;" (click)="deleteCategory(category)">delete</button>
+                        <button class='btn btn-warning' style="float: right; margin-right: 10px;">edit</button>
+                        <button class="btn btn-success" style="float: right; margin-right: 10px;">add Product</button>
+                    </ng-template>
                 </div>
-                <div *ngIf="category.product.length else noProduct">
+                <div *ngIf="category.product.length>0 else noProduct">
                     <table class="card-body table table-hover">
                         <thead>
                             <tr>
@@ -42,8 +52,8 @@
                                 <td>{{ prod.price }}</td>
                                 <td>{{ prod.quantite }}</td>
                                 <td>
-                                    <button class='btn btn-outline-danger'>delete</button> &nbsp;
-                                    <button class='btn btn-outline-warning'>edit</button>
+                                    <button class='btn btn-outline-warning'>edit</button> &nbsp;
+                                    <button class='btn btn-outline-danger'>delete</button>
                                 </td>
                             </tr>
                         </tbody>
