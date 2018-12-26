@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../../router.animations';
 import { Subscription } from 'rxjs';
 import { CategoryService } from './_services/category.service';
+import {GrowlService} from 'ngx-growl';
 
 @Component({
     selector: 'app-productmanagement',
@@ -14,7 +15,10 @@ export class ProductManagementComponent implements OnInit {
     categories;
     getAllSubscription: Subscription;
 
-    constructor(private categoryService: CategoryService) {}
+    constructor(
+        private categoryService: CategoryService,
+        private growlService: GrowlService
+    ) {}
 
     ngOnInit() {
         this.getAllCategories();
@@ -29,19 +33,34 @@ export class ProductManagementComponent implements OnInit {
           });
     }
 
-    categoryAdded(categoryname: string) {
+    addCategory(categoryname: string) {
         this.categoryService.add(categoryname).subscribe((data) => {
             this.getAllCategories();
+            this.growlService.addSuccess(`Category "` + categoryname + `" added successfully.`);
         });
 
     }
 
     deleteCategory(category: any) {
-        if (category.product.length > 0) {
-
-        }
         this.categoryService.delete(category.idCategory).subscribe((data) => {
             this.getAllCategories();
+            this.growlService.addSuccess(`Category "` + category.category1 + `" deleted successfully.`);
         });
+    }
+
+    editCategory(category: any) {
+
+    }
+
+    addProduct(product: any) {
+
+    }
+
+    deleteProduct(product: any) {
+
+    }
+
+    editProduct(product: any) {
+
     }
 }

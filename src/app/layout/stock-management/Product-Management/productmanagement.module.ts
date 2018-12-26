@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { ProductManagementComponent } from './productmanagement.component';
 import { ProductManagementRoutingModule } from './productmanagement-routing.module';
 import { PageHeaderModule } from '../../../shared';
@@ -17,7 +16,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
         NgbModule,
         ProductManagementRoutingModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
     ],
     declarations: [
         ProductManagementComponent,
