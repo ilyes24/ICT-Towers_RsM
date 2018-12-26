@@ -63,4 +63,8 @@ export class ProductManagementComponent implements OnInit {
     editProduct(product: any) {
 
     }
+
+    deleteDisabled() {
+        this.growlService.addError(`Can't delete non-empty category.`);
+    }
 }

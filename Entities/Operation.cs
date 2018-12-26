@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace RelationShipManager.Entities
 {
-    public partial class Operation
+    public class Operation
     {
         public int IdMyUser { get; set; }
         public DateTime Date { get; set; }

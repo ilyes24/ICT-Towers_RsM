@@ -7,10 +7,37 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="e2e\**" />
     <Compile Remove="RelationShipManager-Front\**" />
+    <Compile Remove="src\**" />
+    <Content Remove="e2e\**" />
     <Content Remove="RelationShipManager-Front\**" />
+    <Content Remove="src\**" />
+    <EmbeddedResource Remove="e2e\**" />
     <EmbeddedResource Remove="RelationShipManager-Front\**" />
+    <EmbeddedResource Remove="src\**" />
+    <None Remove="e2e\**" />
     <None Remove="RelationShipManager-Front\**" />
+    <None Remove="src\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="angular.json" />
+    <Content Remove="appsettings.json" />
+    <Content Remove="package-lock.json" />
+    <Content Remove="package.json" />
+    <Content Remove="proxy.config.json" />
+    <Content Remove="tsconfig.json" />
+    <Content Remove="tslint.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove=".editorconfig" />
+    <None Remove=".gitignore" />
+    <None Remove=".travis.yml" />
+    <None Remove="LICENSE" />
+    <None Remove="README.md" />
+    <None Remove="yarn.lock" />
   </ItemGroup>
 
   <ItemGroup>

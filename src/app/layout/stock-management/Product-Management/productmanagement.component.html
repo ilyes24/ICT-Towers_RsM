@@ -21,15 +21,15 @@
                 <div class="card-header">
                     <div *ngIf="category.product.length==0 else deletedisbled">
                         <p style="display: inline" name='idCategory'> {{ category.category1 }} </p>
-                        <button class='btn btn-danger' style="float: right;" (click)="deleteCategory(category)">delete</button>
-                        <button class='btn btn-warning' style="float: right; margin-right: 10px;">edit</button>
-                        <button class="btn btn-success" style="float: right; margin-right: 10px;">add Product</button>
+                        <button class='btn btn-danger' style="float: right;" (click)="deleteCategory(category)">Delete</button>
+                        <button class='btn btn-warning' style="float: right; margin-right: 10px;">Edit</button>
+                        <button class="btn btn-success" style="float: right; margin-right: 10px;">Add Product</button>
                     </div>
                     <ng-template #deletedisbled>
                         <p style="display: inline" name='idCategory'> {{ category.category1 }} </p>
-                        <button class='btn btn-danger disabled' style="float: right;" (click)="deleteCategory(category)">delete</button>
-                        <button class='btn btn-warning' style="float: right; margin-right: 10px;">edit</button>
-                        <button class="btn btn-success" style="float: right; margin-right: 10px;">add Product</button>
+                        <button class='btn btn-danger disabled' style="float: right;" (click)="deleteDisabled()">Delete</button>
+                        <button class='btn btn-warning' style="float: right; margin-right: 10px;">Edit</button>
+                        <button class="btn btn-success" style="float: right; margin-right: 10px;">Add Product</button>
                     </ng-template>
                 </div>
                 <div *ngIf="category.product.length>0 else noProduct">
@@ -40,7 +40,7 @@
                                 <th>Reference</th>
                                 <th>Serial Number</th>
                                 <th>Price</th>
-                                <th>quantity</th>
+                                <th>Quantity</th>
                                 <th style="width: 165px"></th>
                             </tr>
                         </thead>
@@ -51,9 +51,9 @@
                                 <td>{{ prod.serialNumber }}</td>
                                 <td>{{ prod.price }}</td>
                                 <td>{{ prod.quantite }}</td>
-                                <td>
-                                    <button class='btn btn-outline-warning'>edit</button> &nbsp;
-                                    <button class='btn btn-outline-danger'>delete</button>
+                                <td style='display: inline-flex;'>
+                                    <button class='btn btn-outline-warning'>Edit</button> &nbsp;
+                                    <button class='btn btn-outline-danger'>Delete</button>
                                 </td>
                             </tr>
                         </tbody>

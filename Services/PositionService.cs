@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using RelationShipManager.Entities;
 using RelationShipManager.Helpers;
 
@@ -16,10 +13,11 @@ namespace RelationShipManager.Services
         void Update(Position position);
         void Delete(int id);
     }
+
     public class PositionService : IPositionService
     {
-        private RelShip_ManContext _context = new RelShip_ManContext();
-        
+        private readonly RelShip_ManContext _context = new RelShip_ManContext();
+
         public IEnumerable<Position> GetAll()
         {
             return _context.Position;
@@ -32,21 +30,18 @@ namespace RelationShipManager.Services
 
         public Position GetByName(string Name)
         {
-            foreach (var position in this.GetAll())
-            {
+            foreach (var position in GetAll())
                 if (position.Position1 == Name)
                     return position;
-                
-            }
             return null;
         }
 
         public Position Create(Position position)
         {
             //Validation
-            if(string.IsNullOrWhiteSpace(position.Position1))
+            if (string.IsNullOrWhiteSpace(position.Position1))
                 throw new AppException("Position name is required");
-            if(string.IsNullOrWhiteSpace(position.BaseSalary.ToString()))
+            if (string.IsNullOrWhiteSpace(position.BaseSalary.ToString()))
                 throw new AppException("Base salary is required");
 
             //Add
@@ -62,7 +57,7 @@ namespace RelationShipManager.Services
             var _position = _context.Position.Find(position.IdPosition);
 
             //if NOT FOUND
-            if(_position == null)
+            if (_position == null)
                 throw new AppException("Position NOT FOUNT");
 
             //Validation
@@ -70,7 +65,7 @@ namespace RelationShipManager.Services
                 throw new AppException("Position name is required");
             if (string.IsNullOrWhiteSpace(position.BaseSalary.ToString()))
                 throw new AppException("Base salary is required");
-            
+
             //Update
             _position.BaseSalary = position.BaseSalary;
             _position.Position1 = position.Position1;

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace RelationShipManager.Entities
 {
-    public partial class Wilaya
+    public class Wilaya
     {
         public Wilaya()
         {

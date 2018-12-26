@@ -1,10 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace RelationShipManager.Entities
 {
-    public partial class RelShip_ManContext : DbContext
+    public class RelShip_ManContext : DbContext
     {
         public RelShip_ManContext()
         {
@@ -30,7 +28,8 @@ namespace RelationShipManager.Entities
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=RelShip_Man;User ID=ict_towers;Password=ict_towers");
+                optionsBuilder.UseSqlServer(
+                    "Data Source=localhost;Initial Catalog=RelShip_Man;User ID=ict_towers;Password=ict_towers");
             }
         }
 
@@ -190,7 +189,7 @@ namespace RelationShipManager.Entities
 
             modelBuilder.Entity<Operation>(entity =>
             {
-                entity.HasKey(e => new { e.IdMyUser, e.Date, e.IdProduct });
+                entity.HasKey(e => new {e.IdMyUser, e.Date, e.IdProduct});
 
                 entity.Property(e => e.IdMyUser).HasColumnName("idMyUser");
 

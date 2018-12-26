@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using RelationShipManager.Entities;
 using RelationShipManager.Helpers;
 
@@ -16,9 +13,10 @@ namespace RelationShipManager.Services
         void Update(Commune commune);
         void Delete(int id);
     }
+
     public class CommuneService : ICommuneService
     {
-        private RelShip_ManContext _context = new RelShip_ManContext();
+        private readonly RelShip_ManContext _context = new RelShip_ManContext();
 
         public IEnumerable<Commune> GetAll()
         {
@@ -32,11 +30,9 @@ namespace RelationShipManager.Services
 
         public Commune GetByName(string name)
         {
-            foreach (var commune in this.GetAll())
-            {
+            foreach (var commune in GetAll())
                 if (commune.Commune1 == name)
                     return commune;
-            }
             return null;
         }
 

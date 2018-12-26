@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using RelationShipManager.Entities;
 using RelationShipManager.Helpers;
-
 
 namespace RelationShipManager.Services
 {
@@ -19,7 +15,7 @@ namespace RelationShipManager.Services
 
     public class MyUserService : IMyUserService
     {
-        private RelShip_ManContext _context = new RelShip_ManContext();
+        private readonly RelShip_ManContext _context = new RelShip_ManContext();
 
         public IEnumerable<MyUser> GetAll()
         {
@@ -57,7 +53,7 @@ namespace RelationShipManager.Services
             var _user = _context.MyUser.Find(user.IdMyUser);
 
             //check if EXIST
-            if(_user == null)
+            if (_user == null)
                 throw new AppException("user NOT FOUND");
 
             //Validation

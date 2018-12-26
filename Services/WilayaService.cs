@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using RelationShipManager.Entities;
 using RelationShipManager.Helpers;
 
@@ -16,9 +13,10 @@ namespace RelationShipManager.Services
         void Update(Wilaya wilaya);
         void Delete(int id);
     }
+
     public class WilayaService : IWilayaService
     {
-        private RelShip_ManContext _context = new RelShip_ManContext();
+        private readonly RelShip_ManContext _context = new RelShip_ManContext();
 
         public IEnumerable<Wilaya> GetAll()
         {
@@ -32,12 +30,9 @@ namespace RelationShipManager.Services
 
         public Wilaya GetByName(string Name)
         {
-            foreach (var wilaya in this.GetAll())
-            {
+            foreach (var wilaya in GetAll())
                 if (wilaya.Wilaya1 == Name)
                     return wilaya;
-
-            }
             return null;
         }
 

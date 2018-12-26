@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RelationShipManager.Entities
 {
-    public partial class MyUser
+    public class MyUser
     {
         public MyUser()
         {
@@ -14,6 +13,7 @@ namespace RelationShipManager.Entities
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdMyUser { get; set; }
+
         public string Fname { get; set; }
         public string Lname { get; set; }
         public string Company { get; set; }

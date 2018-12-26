@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RelationShipManager.Entities
 {
-    public partial class Position
+    public class Position
     {
         public Position()
         {
@@ -13,6 +12,7 @@ namespace RelationShipManager.Entities
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdPosition { get; set; }
+
         public string Position1 { get; set; }
         public double BaseSalary { get; set; }
 

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using RelationShipManager.Entities;
 using RelationShipManager.Helpers;
-
 
 namespace RelationShipManager.Services
 {
@@ -20,8 +20,8 @@ namespace RelationShipManager.Services
 
     public class EmployeeService : IEmployeeService
     {
-        private RelShip_ManContext _context = new RelShip_ManContext();
-        
+        private readonly RelShip_ManContext _context = new RelShip_ManContext();
+
         public Employee Authenticate(string username, string password)
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
@@ -64,7 +64,7 @@ namespace RelationShipManager.Services
 
             employee.PasswordHash = passwordHash;
             employee.PasswordSalt = passwordSalt;
-            
+
             _context.Employee.Add(employee);
             _context.SaveChanges();
 
@@ -79,11 +79,8 @@ namespace RelationShipManager.Services
                 throw new AppException("User not found");
 
             if (userParam.UserName != user.UserName)
-            {
-                // username has changed so check if the new username is already taken
                 if (_context.Employee.Any(x => x.UserName == userParam.UserName))
                     throw new AppException("Username " + userParam.UserName + " is already taken");
-            }
 
             // update user properties
             user.IdMyUserNavigation.Fname = userParam.IdMyUserNavigation.Fname;
@@ -120,29 +117,32 @@ namespace RelationShipManager.Services
         private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             if (password == null) throw new ArgumentNullException("password is empty");
-            if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
 
-            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            using (var hmac = new HMACSHA512())
             {
                 passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
             }
         }
 
         private static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
         {
             if (password == null) throw new ArgumentNullException("password");
-            if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
-            if (storedHash.Length != 64) throw new ArgumentException("Invalid length of password hash (64 bytes expected).", "passwordHash");
-            if (storedSalt.Length != 128) throw new ArgumentException("Invalid length of password salt (128 bytes expected).", "passwordHash");
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
+            if (storedHash.Length != 64)
+                throw new ArgumentException("Invalid length of password hash (64 bytes expected).", "passwordHash");
+            if (storedSalt.Length != 128)
+                throw new ArgumentException("Invalid length of password salt (128 bytes expected).", "passwordHash");
 
-            using (var hmac = new System.Security.Cryptography.HMACSHA512(storedSalt))
+            using (var hmac = new HMACSHA512(storedSalt))
             {
-                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-                for (int i = 0; i < computedHash.Length; i++)
-                {
-                    if (computedHash[i] != storedHash[i]) return false;
-                }
+                var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+                for (var i = 0; i < computedHash.Length; i++)
+                    if (computedHash[i] != storedHash[i])
+                        return false;
             }
 
             return true;
