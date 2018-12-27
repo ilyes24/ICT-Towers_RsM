@@ -23,13 +23,13 @@
                         <p style="display: inline" name='idCategory'> {{ category.category1 }} </p>
                         <button class='btn btn-danger' style="float: right;" (click)="deleteCategory(category)">Delete</button>
                         <app-editcategory (categoryEdited)="editCategory($event, category)"></app-editcategory>
-                        <button class="btn btn-success" style="float: right; margin-right: 10px;">Add Product</button>
+                        <app-addproduct (productAdded)="addProduct($event, category)"></app-addproduct>
                     </div>
                     <ng-template #deletedisbled>
                         <p style="display: inline" name='idCategory'> {{ category.category1 }} </p>
                         <button class='btn btn-danger disabled' style="float: right;" (click)="deleteDisabled()">Delete</button>
                         <app-editcategory (categoryEdited)="editCategory($event)"></app-editcategory>
-                        <button class="btn btn-success" style="float: right; margin-right: 10px;">Add Product</button>
+                        <app-addproduct (productAdded)="addProduct($event, category)"></app-addproduct>
                     </ng-template>
                 </div>
                 <div *ngIf="category.product.length>0 else noProduct">

@@ -1,0 +1,36 @@
+<button class="btn btn-success" style="float: right; margin-right: 10px;" (click)="open(content)">Add Product</button>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Add Product</h4>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]='productForm'>
+            <div class="form-group has-warning">
+                <label for="">Name</label>
+                <input formControlName='ProductName' id='ProductName' class="form-control form-control-warning" placeholder="Product Name">
+            </div>
+            <div class="form-group has-warning">
+                <label for="">Reference</label>
+                <input formControlName='Reference' id="Reference" class="form-control form-control-warning" placeholder="Product Reference">
+            </div>
+            <div class="form-group has-warning">
+                <label for="">Serial Number</label>
+                <input formControlName='SerialNumber' id="SerialNumber" class="form-control form-control-warning" placeholder="Product Serial Number">
+            </div>
+            <div class="form-group has-warning">
+                <label for="">Quantity</label>
+                <input formControlName='Quantite' id="Quantite" class="form-control form-control-warning" placeholder="Product Quantity">
+            </div>
+            <div class="form-group has-warning">
+                <label for="">Price</label>
+                <input formControlName='Price' id="Price" class="form-control form-control-warning" placeholder="Product Price">
+            </div>
+            <div class="form-group">
+                <button type="button" (click)='addProduct()' class="float-right btn btn-secondary">Add</button>
+            </div>
+        </form>
+
+        <br>
+
+    </div>
+</ng-template>

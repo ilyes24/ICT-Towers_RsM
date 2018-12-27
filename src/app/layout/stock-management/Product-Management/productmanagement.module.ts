@@ -5,9 +5,12 @@ import { ProductManagementComponent } from './productmanagement.component';
 import { ProductManagementRoutingModule } from './productmanagement-routing.module';
 import { PageHeaderModule } from '../../../shared';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 import { AddCategoryComponent } from './components/addcategory/addcategory.component';
 import { EditCategoryComponent } from './components/editcategory/editcategory.component';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AddProductComponent } from './components/addproduct/addproduct.component';
+// import { EditProductComponent } from './components/editproduct/editproduct.component';
 
 @NgModule({
     imports: [
@@ -22,7 +25,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     declarations: [
         ProductManagementComponent,
         AddCategoryComponent,
-        EditCategoryComponent
+        EditCategoryComponent,
+        AddProductComponent,
+        // EditProductComponent
     ]
 })
 export class ProductManagementModule {}
