@@ -20,7 +20,8 @@ export class CategoryService {
     }
 
     update(category: Category) {
-        return this.http.put(`http://localhost:5000/api/Category/` + category.idCategory, category);
+        console.log(category);
+        return this.http.put(`http://localhost:5000/api/Category?id=` + category.idCategory, {Category: category.category1});
     }
 
     delete(id: number) {

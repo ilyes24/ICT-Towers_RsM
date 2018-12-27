@@ -1,12 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace RelationShipManager.Entities
+﻿namespace RelationShipManager.Entities
 {
     public class Product
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdProduct { get; set; }
-
         public string Product1 { get; set; }
         public string Reference { get; set; }
         public string SerialNumber { get; set; }

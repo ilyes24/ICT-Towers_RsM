@@ -35,17 +35,13 @@ namespace RelationShipManager.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Tables Constraints
             modelBuilder.Entity<Category>(entity =>
             {
                 entity.HasKey(e => e.IdCategory);
 
-                entity.Property(e => e.IdCategory)
-                    .HasColumnName("idCategory")
-                    .ValueGeneratedOnAdd();
+                entity.Property(e => e.IdCategory).HasColumnName("idCategory");
 
                 entity.Property(e => e.Category1)
-                    .IsRequired()
                     .HasColumnName("Category")
                     .HasMaxLength(100)
                     .IsUnicode(false);
@@ -79,9 +75,7 @@ namespace RelationShipManager.Entities
             {
                 entity.HasKey(e => e.IdContact);
 
-                entity.Property(e => e.IdContact)
-                    .HasColumnName("idContact")
-                    .ValueGeneratedOnAdd();
+                entity.Property(e => e.IdContact).HasColumnName("idContact");
 
                 entity.Property(e => e.ContactInfo)
                     .IsRequired()
@@ -121,13 +115,9 @@ namespace RelationShipManager.Entities
 
                 entity.Property(e => e.IdPosition).HasColumnName("idPosition");
 
-                entity.Property(e => e.PasswordHash)
-                    .HasMaxLength(1000)
-                    .IsUnicode(false);
+                entity.Property(e => e.PasswordHash).HasMaxLength(1024);
 
-                entity.Property(e => e.PasswordSalt)
-                    .HasMaxLength(1000)
-                    .IsUnicode(false);
+                entity.Property(e => e.PasswordSalt).HasMaxLength(1024);
 
                 entity.Property(e => e.Salaire).HasColumnType("money");
 
@@ -152,9 +142,7 @@ namespace RelationShipManager.Entities
             {
                 entity.HasKey(e => e.IdMyUser);
 
-                entity.Property(e => e.IdMyUser)
-                    .HasColumnName("idMyUser")
-                    .ValueGeneratedOnAdd();
+                entity.Property(e => e.IdMyUser).HasColumnName("idMyUser");
 
                 entity.Property(e => e.Company)
                     .HasMaxLength(150)
@@ -213,9 +201,7 @@ namespace RelationShipManager.Entities
             {
                 entity.HasKey(e => e.IdPosition);
 
-                entity.Property(e => e.IdPosition)
-                    .HasColumnName("idPosition")
-                    .ValueGeneratedOnAdd();
+                entity.Property(e => e.IdPosition).HasColumnName("idPosition");
 
                 entity.Property(e => e.Position1)
                     .IsRequired()
@@ -228,9 +214,7 @@ namespace RelationShipManager.Entities
             {
                 entity.HasKey(e => e.IdProduct);
 
-                entity.Property(e => e.IdProduct)
-                    .HasColumnName("idProduct")
-                    .ValueGeneratedOnAdd();
+                entity.Property(e => e.IdProduct).HasColumnName("idProduct");
 
                 entity.Property(e => e.IdCategory).HasColumnName("idCategory");
 

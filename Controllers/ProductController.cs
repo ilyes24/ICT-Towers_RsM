@@ -4,6 +4,8 @@ using Microsoft.Extensions.Options;
 using RelationShipManager.Entities;
 using RelationShipManager.Helpers;
 using RelationShipManager.Services;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RelationShipManager.Controllers
 {
@@ -14,7 +16,7 @@ namespace RelationShipManager.Controllers
         private readonly AppSettings _appSettings;
         private IMapper _mapper;
         private IProductService _productService;
-        private RelShip_ManContext db = new RelShip_ManContext();
+        private RelShip_ManContext _db = new RelShip_ManContext();
 
         public ProductController(
             IProductService productService,
@@ -26,5 +28,22 @@ namespace RelationShipManager.Controllers
             _appSettings = appSettings.Value;
             _mapper = mapper;
         }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var productService = new ProductService();
+            try
+            {
+                var Products = _db.Product.ToList();
+                return Ok(Products);
+            }
+            catch (AppException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+
     }
 }

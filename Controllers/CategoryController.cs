@@ -15,8 +15,8 @@ namespace RelationShipManager.Controllers
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
-        private readonly IMapper _mapper;
         private readonly RelShip_ManContext _db = new RelShip_ManContext();
+        private readonly IMapper _mapper;
 
         public CategoryController(
             ICategoryService categoryService,
@@ -41,9 +41,9 @@ namespace RelationShipManager.Controllers
                     category.Product = (ICollection<Product>) productService.GetAll(category);
                 return Ok(Categorys);
             }
-            catch
+            catch (AppException ex)
             {
-                return BadRequest();
+                return BadRequest(new { message = ex.Message });
             }
         }
 
@@ -58,9 +58,9 @@ namespace RelationShipManager.Controllers
                 var Categorys = _db.Category.Find(id);
                 return Ok(Categorys);
             }
-            catch
+            catch (AppException ex)
             {
-                return BadRequest();
+                return BadRequest(new { message = ex.Message });
             }
         }
 

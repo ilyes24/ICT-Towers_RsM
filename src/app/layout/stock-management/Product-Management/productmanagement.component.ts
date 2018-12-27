@@ -3,6 +3,7 @@ import { routerTransition } from '../../../router.animations';
 import { Subscription } from 'rxjs';
 import { CategoryService } from './_services/category.service';
 import {GrowlService} from 'ngx-growl';
+import { Category } from 'src/app/_models';
 
 @Component({
     selector: 'app-productmanagement',
@@ -48,8 +49,13 @@ export class ProductManagementComponent implements OnInit {
         });
     }
 
-    editCategory(category: any) {
-
+    editCategory(category: any, cat: Category) {
+        console.log('ani f edit category');
+        cat.category1 = category;
+        this.categoryService.update(cat).subscribe((data) => {
+            this.getAllCategories();
+            this.growlService.addSuccess(`Category edited successfully.`);
+        });
     }
 
     addProduct(product: any) {

@@ -6,6 +6,7 @@ import { ProductManagementRoutingModule } from './productmanagement-routing.modu
 import { PageHeaderModule } from '../../../shared';
 import { HttpClientModule } from '@angular/common/http';
 import { AddCategoryComponent } from './components/addcategory/addcategory.component';
+import { EditCategoryComponent } from './components/editcategory/editcategory.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ],
     declarations: [
         ProductManagementComponent,
-        AddCategoryComponent
+        AddCategoryComponent,
+        EditCategoryComponent
     ]
 })
 export class ProductManagementModule {}
